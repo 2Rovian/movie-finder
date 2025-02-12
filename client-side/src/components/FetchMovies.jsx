@@ -25,7 +25,7 @@ function FetchMovies() {
                 ))}
             </div>
             
-            <MostViewedCard />
+            <MostViewedCard data={ data }/>
         </div>
     )
 }
