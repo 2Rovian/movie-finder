@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
 body{
-    @apply bg-blue-950;
+    @apply bg-blue-950 overflow-x-hidden;
 }
+
+.movie-grid{
+    @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 sm:gap-x-3 sm:mx-5 xl:mx-2 gap-y-4 my-5 grow;
+}
+
+
