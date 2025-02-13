@@ -29,8 +29,8 @@ function Navbar({ onSearch }) {
 
     return (
         <div className='h-[70px] bg-slate-900 text-white'>
-            <div className='container lg:max-w-none mx-auto px-4 flex items-center h-full'>
-                <Link to='/' className='xl:mx-12'>
+            <div className='container max-w-[1300px] mx-auto px-4 flex items-center h-full'>
+                <Link to='/' className='xl:mx-5'>
                     <div className='text-xl md:text-2xl font-bold'>
                         <span className='bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent'>Movie Finder</span>
                     </div>
@@ -52,7 +52,7 @@ function Navbar({ onSearch }) {
                 </div>
 
                 <Link to='/login'>
-                    <div className='bg-gradient-to-r from-blue-400 to-indigo-400 hover:bg-gradient-to-l cursor-pointer p-1 rounded-lg text-xl xl:mx-12'>
+                    <div className='bg-gradient-to-r from-blue-400 to-indigo-400 hover:bg-gradient-to-l cursor-pointer p-1 rounded-lg text-xl xl:mx-5'>
                         <div className='w-full h-full rounded-md bg-slate-900 px-3 py-1 '>
                             <i className="fa-solid fa-user"></i>
                         </div>

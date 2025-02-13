@@ -15,8 +15,8 @@ function SearchMovie({ movieName }) {
     if (error) return <div>Erro: {error.message}</div>;
 
     return (
-        <div>
-            <div className='movie-grid'>
+        <div className='sm:px-4'>
+            <div className='movie-grid-2'>
                 {data?.results.map((movie) => (
                     <div key={movie.id} className='flex flex-col items-center '>
                         <MovieCard movie={movie} />
