@@ -1,14 +1,23 @@
-import React from 'react'
+import { useState } from 'react'
 import { useQuery } from 'react-query'
 import MovieCard from './MovieCard';
 import MostViewedCard from './MostViewedCard';
 
 function FetchMovies() {
 
-    const API_KEY = "654a53458a083339f9d52923d42d34a0";
+    const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+    const BASE_URL = "https://api.themoviedb.org/3/"
+
+    // const API_OPTIONS = {
+    //     method: 'GET',
+    //     headers: {
+    //         accept: 'application/json',
+    //         Authorization: `Bearer ${API_KEY}`
+    //     }
+    // }
 
     const { data, isLoading, error } = useQuery('movies', () =>
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&page=1`)
+        fetch(`${BASE_URL}movie/popular?api_key=${API_KEY}&page=1`)
             .then((res) => res.json())
     );
 
@@ -25,7 +34,7 @@ function FetchMovies() {
                 ))}
             </div>
             
-            <MostViewedCard data={ data }/>
+            <MostViewedCard data={ data } />
         </div>
     )
 }
