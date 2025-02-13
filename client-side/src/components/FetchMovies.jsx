@@ -34,7 +34,7 @@ function FetchMovies() {
                 ))}
             </div>
             
-            <MostViewedCard data={ data } />
+            <MostViewedCard BASE_URL={ BASE_URL } API_KEY={ API_KEY }/>
         </div>
     )
 }

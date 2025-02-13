@@ -1,9 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useQuery } from 'react-query';
 
-function MostViewedCard({ data }) {
+function MostViewedCard({ BASE_URL, API_KEY }) {
     const [DayBtn, setDayBtn] = useState(true);
     const [WeekBtn, setWeekBtn] = useState(false);
     const [MonthBtn, setMonthBtn] = useState(false);
+
+    const [time, setTime] = useState('day');
+    
+    const { data, isLoading, error } = useQuery(['trending_movies', time], () =>
+        fetch(`${BASE_URL}trending/movie/${time}?api_key=${API_KEY}`)
+            .then((res) => res.json())
+    );
+
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Erro: {error.message}</div>;
+
     return (
         <div className='w-[95%] mx-auto lg:max-w-[400px] lg:mt-5 lg:mr-3'>
             <main className='w-full bg-slate-900 h-fit rounded-t-xl rounded-b-lg flex flex-col'>
@@ -12,13 +24,13 @@ function MostViewedCard({ data }) {
 
                     <div className='items-center flex h-full gap-x-4'>
                         <button className={`border-2 rounded-xl px-4 py-1 cursor-pointer duration-500 ease-in-out ${DayBtn ? "border-blue-400 text-blue-400" : "border-blue-900 text-blue-900"}`}
-                            onClick={() => { setDayBtn(true); setWeekBtn(false); setMonthBtn(false) }}
+                            onClick={() => { setDayBtn(true); setWeekBtn(false); setMonthBtn(false); setTime('day')}}
                         >Day</button>
                         <button className={`border-2 rounded-xl px-4 py-1 cursor-pointer duration-500 ease-in-out ${WeekBtn ? "border-blue-400 text-blue-400" : "border-blue-900 text-blue-900"}`}
-                            onClick={() => { setDayBtn(false); setWeekBtn(true); setMonthBtn(false) }}
+                            onClick={() => { setDayBtn(false); setWeekBtn(true); setMonthBtn(false); setTime('week') }}
                         >Week</button>
                         <button className={`border-2 rounded-xl px-4 py-1 cursor-pointer duration-500 ease-in-out ${MonthBtn ? "border-blue-400 text-blue-400" : "border-blue-900 text-blue-900"}`}
-                            onClick={() => { setDayBtn(false); setWeekBtn(false); setMonthBtn(true) }}
+                            onClick={() => { setDayBtn(false); setWeekBtn(false); setMonthBtn(true); setTime('day') }}
                         >Month</button>
                     </div>
                 </div>
@@ -37,10 +49,10 @@ function MostViewedCard({ data }) {
                                             <span className='items-center flex'>
                                                 <i className='bx bx-star ml-0 mr-0'></i>
                                             </span>
-                                            
+
                                             <span>{movie.vote_average.toFixed(1)}</span>
                                         </div>
-                                        
+
                                         <div className='flex gap-x-1'>
                                             <span>{movie.release_date.split("-")[0]}</span>
                                             <span>•</span>
