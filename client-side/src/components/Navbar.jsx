@@ -28,7 +28,7 @@ function Navbar({ onSearch }) {
     }
 
     return (
-        <div className='h-[70px] bg-slate-900 text-white'>
+        <div className='min-h-[70px] bg-slate-900 text-white'>
             <div className='container max-w-[1300px] mx-auto px-4 flex items-center h-full'>
                 <Link to='/' className='xl:mx-5'>
                     <div className='text-xl md:text-2xl font-bold'>

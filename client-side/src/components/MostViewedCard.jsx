@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery } from 'react-query';
+import Spin from './Spin';
 
 function MostViewedCard({ BASE_URL, API_KEY }) {
     const [DayBtn, setDayBtn] = useState(true);
@@ -13,8 +14,24 @@ function MostViewedCard({ BASE_URL, API_KEY }) {
             .then((res) => res.json())
     );
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Erro: {error.message}</div>;
+    if (isLoading) return (
+        <div className='grow '>
+            <div className='flex mt-10'>
+                <div className='flex items-center mx-auto bg-slate-900 text-slate-100  px-3 rounded-md py-2 shadow-lg'>
+                    <span className='text-xl mr-2'>Loading Movies</span>
+                    <Spin />
+                </div>
+            </div>
+        </div>
+    );
+
+    if (error) return (<div className='grow '>
+        <div className='flex mt-10'>
+            <div className='flex items-center mx-auto bg-slate-900 text-slate-100  px-3 rounded-md py-2 shadow-lg'>
+                <span className='text-xl mr-2'>Erro: {error.message}</span>
+            </div>
+        </div>
+    </div>);
 
     return (
         <main className='w-full bg-slate-900 h-fit rounded-t-xl rounded-b-lg flex flex-col'>

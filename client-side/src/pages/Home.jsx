@@ -1,8 +1,11 @@
-import React from 'react'
+import { useState } from 'react'
+
+// components
 import Navbar from '../components/Navbar'
 import FetchMovies from '../components/FetchMovies'
 import SearchMovie from '../components/SearchMovie'
-import { useState } from 'react'
+import Footer from '../components/Footer'
+//
 
 function Home() {
   const [SearchMovieName, setSearchMovieName] = useState('');
@@ -12,9 +15,10 @@ function Home() {
   };
 
   return (
-    <div>
+    <div className='flex flex-col h-screen'>
         <Navbar onSearch={handleSearch}/>
         { SearchMovieName ? <SearchMovie movieName={SearchMovieName} /> : <FetchMovies /> }
+        <Footer />
     </div>
   )
 }

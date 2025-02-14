@@ -3,7 +3,7 @@ import img404 from '../assets/img_erro_404.png';
 
 function MovieCard({ movie }) {
     return (
-        <div className=' pt-2 px-2 rounded-xl bg-slate-900 outline-2 outline-transparent hover:outline-blue-400 hover:duration-[400ms] hover:scale-105'>
+        <div className=' pt-2 px-2 rounded-xl bg-slate-900 outline-2 outline-transparent hover:outline-blue-400 hover:duration-[400ms] hover:scale-105 shadow'>
             <div className='relative rounded-xl '>
                 <img src={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : img404} alt="" className='object-cover rounded-md w-52 sm:w-60 h-60 sm:h-64 rounded-t-xl' /> 
 
