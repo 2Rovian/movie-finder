@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import ErrorPage from './pages/ErrorPage';
 
+
+
 // Cria uma instância do QueryClient
 const queryClient = new QueryClient();
 
