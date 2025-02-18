@@ -1,7 +1,9 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import useProfileStore from '../zustand/profileStore'
 
-function ProfilePageNavbar({ profilePic }) {
+function ProfilePageNavbar() {
+
+    const { profilePics, currentIndex } = useProfileStore();
     return (
         <div className='h-[70px] relative'>
             <div className='absolute h-full w-[100px] bg-slate-950 items-center flex justify-center rounded-br-xl'>
@@ -12,7 +14,7 @@ function ProfilePageNavbar({ profilePic }) {
 
             <div className='bg-slate-950 w-[100px] absolute right-0 h-full rounded-bl-xl text-slate-100 flex justify-center items-center'>
                 <span className=''>
-                    <img src={profilePic} alt="profile-pic" className='size-[50px] rounded-full hover:outline cursor-pointer duration-150 ease-in-out' />
+                    <img src={profilePics[currentIndex]} alt="profile-pic" className='size-[50px] rounded-full hover:outline cursor-pointer duration-150 ease-in-out' />
                 </span>
             </div>
 
