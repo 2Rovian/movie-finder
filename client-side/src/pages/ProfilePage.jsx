@@ -15,24 +15,16 @@ function ProfilePage() {
     const [profilePics] = useState([pfp1, pfp2, pfp3, pfp4, pfp5, pfp6])
 
     const prevPfp = () => {
-        if (currentIndex == 0) {
-            setCurrentIndex(5)
-        } else {
-            setCurrentIndex(currentIndex + 1)
-        }
-    }
+        setCurrentIndex((prevIndex) => ( prevIndex === 0 ? profilePics.length - 1 : prevIndex - 1 ));
+    };
 
     const nextPfp = () => {
-        if(currentIndex == 5){
-            setCurrentIndex(0)
-        } else{
-            setCurrentIndex(currentIndex + 1)
-        }
-    }
+        setCurrentIndex((prevIndex) => (prevIndex === profilePics.length - 1 ? 0 : prevIndex + 1));
+    };
 
     return (
         <div>
-            <ProfilePageNavbar />
+            <ProfilePageNavbar profilePic={profilePics[currentIndex]}/>
             <div className='w-[400px] h-fit lg:w-[500px] mx-auto mt-[40px] bg-slate-900 rounded-lg text-blue-400 shadow'>
                 <div className='flex py-5 flex-col items-center gap-y-4'>
                     <div className='relative'>
