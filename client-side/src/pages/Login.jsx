@@ -30,19 +30,19 @@ function Login() {
 
         setTimeout(() => {
           setMessage('');
-        }, 4000)
+        }, 2000)
 
         return;
       } else {
         try {
           const response = await axios.post("http://localhost:8000/api/create-user", { username, password })
 
-          if (response.status == 200) {
-            setValidation('Login Successful!')
+          if (response.status === 201) {
+            setValidation('Register Successful!')
 
             setTimeout(() => {
               setValidation('')
-            }, 4000);
+            }, 2000);
           }
 
         } catch (error) {
@@ -50,7 +50,7 @@ function Login() {
           setValidation('Failed to Register')
           setTimeout(() => {
             setValidation('');
-          }, 4000);
+          }, 2000);
         }
       }
 
@@ -61,25 +61,25 @@ function Login() {
   }
 
   const loginFunction = async () => {
-    if(!username | !password){
+    if (!username || !password) {
       setMessage("Username and Password are required.")
       setTimeout(() => {
         setMessage('')
-      }, 4000);
+      }, 2000);
       return;
     }
 
     try {
       const response = await axios.post("http://localhost:8000/api/login", { username, password })
 
-      if(response.status == 200){
+      if (response.status === 200) {
         setValidation("Login Successful!");
         localStorage.setItem("token", response.data.token);
 
         setTimeout(() => {
           setValidation("");
           navigate('/')
-        }, 4000);
+        }, 2000);
       }
 
     } catch (error) {
@@ -87,7 +87,7 @@ function Login() {
       setMessage("Invalid username or Password.")
       setTimeout(() => {
         setMessage("")
-      }, 4000);
+      }, 2000);
     }
 
   }
@@ -138,7 +138,11 @@ function Login() {
 
       {validation &&
         <div className='w-[400px] mx-auto mt-14  flex justify-center py-5 rounded-full bg-slate-200'>
-          <span className={`text-2xl font-bold ${validation === 'Login Successful!' ? 'text-green-600' : 'text-red-800'} `}>{validation}</span>
+          {isLoginMenu ?
+            <span className={`text-2xl font-bold ${validation === 'Login Successful!' && 'text-green-600'} `}>{validation}</span> 
+            :
+            <span className={`text-2xl font-bold ${validation === 'Register Successful!' ? 'text-green-600' : 'text-red-800'} `}> {validation} </span>}
+
         </div>}
 
     </div>
