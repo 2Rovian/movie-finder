@@ -1,10 +1,14 @@
 import React from 'react'
-import { useState } from 'react'
 import Navbar from '../components/Navbar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import { useContext, useState } from 'react';
+import AuthContext from '../AuthContext';
+
 function Login() {
+
+  const { login } = useContext(AuthContext);
 
   const [isPasswordVisible, setisPasswordVisible] = useState(false);
   const [isPasswordVisible2, setisPasswordVisible2] = useState(false);
@@ -73,6 +77,7 @@ function Login() {
       const response = await axios.post("http://localhost:8000/api/login", { username, password })
 
       if (response.status === 200) {
+        login(response.data); // Salva usuário no contexto
         setValidation("Login Successful!");
         localStorage.setItem("token", response.data.token);
 

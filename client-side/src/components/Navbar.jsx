@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { useQuery } from 'react-query';
+import AuthContext from '../AuthContext';
 
 function Navbar({ onSearch }) {
+    const { user, logout } = useContext(AuthContext);
+
     const [isInputFocus, setisInputFocus] = useState(false);
     const inputRef = useRef(null);
 
@@ -51,13 +54,20 @@ function Navbar({ onSearch }) {
                     <i className="fa-solid fa-magnifying-glass mx-auto px-4 cursor-pointer"></i>
                 </div>
 
-                <Link to='/login'>
-                    <div className='bg-gradient-to-r from-blue-400 to-indigo-400 hover:bg-gradient-to-l cursor-pointer p-1 rounded-lg text-xl xl:mx-5'>
-                        <div className='w-full h-full rounded-md bg-slate-900 px-3 py-1 '>
-                            <i className="fa-solid fa-user"></i>
+                {user ?
+                    <Link to='/profile-page'>
+                        <div className='bg-gradient-to-r from-blue-400 to-indigo-400 hover:bg-gradient-to-l cursor-pointer p-1 rounded-lg text-xl xl:mx-5'>
+                            <div className='w-full h-full rounded-md bg-slate-900 px-3 py-1 '>
+                                <i className="fa-solid fa-user"></i>
+                            </div>
                         </div>
-                    </div>
-                </Link>
+                    </Link>
+                    :
+                    <Link to='/login'>
+
+                    </Link>}
+
+
             </div>
         </div>
     );
