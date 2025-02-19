@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef, useContext } from 'react';
-import { useQuery } from 'react-query';
+
 import AuthContext from '../AuthContext';
+
+import useProfileStore from '../zustand/profileStore';
 
 function Navbar({ onSearch }) {
     const { user, logout } = useContext(AuthContext);
+
+    const { profilePics, currentIndex } = useProfileStore();
 
     const [isInputFocus, setisInputFocus] = useState(false);
     const inputRef = useRef(null);
@@ -56,15 +60,17 @@ function Navbar({ onSearch }) {
 
                 {user ?
                     <Link to='/profile-page'>
+                        <div className='bg-gradient-to-r from-blue-400 to-indigo-400 hover:from-blue-300 hover:to-indigo-300 duration-500 ease-in-out cursor-pointer p-1 rounded-full transition-all hover:opacity-80 '>
+                            <img src={profilePics[currentIndex]} alt="" className='size-[40px] md:size-[50px] rounded-full cursor-pointer' />
+                        </div>
+                    </Link>
+                    :
+                    <Link to='/login'>
                         <div className='bg-gradient-to-r from-blue-400 to-indigo-400 hover:bg-gradient-to-l cursor-pointer p-1 rounded-lg text-xl xl:mx-5'>
                             <div className='w-full h-full rounded-md bg-slate-900 px-3 py-1 '>
                                 <i className="fa-solid fa-user"></i>
                             </div>
                         </div>
-                    </Link>
-                    :
-                    <Link to='/login'>
-
                     </Link>}
 
 
