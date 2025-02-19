@@ -1,13 +1,14 @@
-import ProfilePageNavbar from '../components/ProfilePageNavbar';
 import useProfileStore from '../zustand/profileStore';
+
+import { Link } from 'react-router-dom';
 
 function ProfilePage() {
     const { profilePics, currentIndex, changeProfilePic, nextPfp, prevPfp, toggleChangeProfilePic } = useProfileStore();
 
     return (
         <div>
-            <ProfilePageNavbar />
-            <div className='w-[400px] h-fit lg:w-[500px] mx-auto mt-[40px] bg-slate-900 rounded-lg text-blue-400 shadow'>
+            
+            <div className='w-[400px] h-fit lg:w-[500px] mx-auto mt-12 bg-slate-900 rounded-lg text-blue-400 shadow'>
                 <div className='flex py-5 flex-col items-center gap-y-4'>
                     <div className='relative'>
                         <img src={profilePics[currentIndex]} alt="profile picture"
@@ -29,6 +30,12 @@ function ProfilePage() {
                     </div>
                     <p className='text-xl font-bold'>Profile Name</p>
                 </div>
+            </div>
+
+            <div className='flex justify-center mt-12'>
+                <Link to='/' className='bg-slate-900 rounded-full p-6 hover:outline-2 hover:outline-blue-400 outline-transparent duration-300 ease-in-out'>
+                    <i className="fa-solid fa-house text-4xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400" />
+                </Link>
             </div>
         </div>
     )

@@ -1,10 +1,12 @@
-import React from 'react'
-import Navbar from '../components/Navbar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import AuthContext from '../AuthContext';
+
+import LoginPageNavbar from '../components/LoginPageNavbar';
+
+import { Link } from 'react-router-dom';
 
 function Login() {
 
@@ -46,7 +48,8 @@ function Login() {
 
             setTimeout(() => {
               setValidation('')
-            }, 2000);
+              loginFunction(true)
+            }, 1000);
           }
 
         } catch (error) {
@@ -64,7 +67,7 @@ function Login() {
     }
   }
 
-  const loginFunction = async () => {
+  const loginFunction = async (isRegister = false) => {
     if (!username || !password) {
       setMessage("Username and Password are required.")
       setTimeout(() => {
@@ -78,13 +81,17 @@ function Login() {
 
       if (response.status === 200) {
         login(response.data); // Salva usuário no contexto
-        setValidation("Login Successful!");
+
+        if (!isRegister) {
+          setValidation("Login Successful!");
+        }
+
         localStorage.setItem("token", response.data.token);
 
         setTimeout(() => {
           setValidation("");
           navigate('/')
-        }, 2000);
+        }, 1000);
       }
 
     } catch (error) {
@@ -99,7 +106,7 @@ function Login() {
 
   return (
     <div className=''>
-      <Navbar />
+      <LoginPageNavbar />
       <form onSubmit={handleSubmit} className='mx-auto bg-slate-800 border border-blue-400 w-[400px] md:w-[600px] flex flex-col rounded-xl px-4 mt-10'>
         <p className='text-blue-400 font-semibold my-5 text-2xl'>{isLoginMenu ? "Log in your account" : "Create your account"}</p>
 
@@ -144,12 +151,17 @@ function Login() {
       {validation &&
         <div className='w-[400px] mx-auto mt-14  flex justify-center py-5 rounded-full bg-slate-200'>
           {isLoginMenu ?
-            <span className={`text-2xl font-bold ${validation === 'Login Successful!' && 'text-green-600'} `}>{validation}</span> 
+            <span className={`text-2xl font-bold ${validation === 'Login Successful!' && 'text-green-600'} `}>{validation}</span>
             :
             <span className={`text-2xl font-bold ${validation === 'Register Successful!' ? 'text-green-600' : 'text-red-800'} `}> {validation} </span>}
 
         </div>}
 
+      <div className='flex justify-center mt-12'>
+        <Link to='/' className='bg-slate-900 rounded-full p-6 hover:outline-2 hover:outline-blue-400 outline-transparent duration-300 ease-in-out'>
+          <i className="fa-solid fa-house text-4xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400" />
+        </Link>
+      </div>
     </div>
   )
 }
