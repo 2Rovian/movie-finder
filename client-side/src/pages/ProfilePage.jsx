@@ -1,9 +1,11 @@
 import useProfileStore from '../zustand/profileStore';
+import useUserStore from '../zustand/userStore';
 
 import { Link } from 'react-router-dom';
 
 function ProfilePage() {
     const { profilePics, currentIndex, changeProfilePic, nextPfp, prevPfp, toggleChangeProfilePic } = useProfileStore();
+    const { user } = useUserStore();
 
     return (
         <div>
@@ -28,7 +30,7 @@ function ProfilePage() {
                         />
 
                     </div>
-                    <p className='text-xl font-bold'>Profile Name</p>
+                    <p className='text-xl font-bold'>{user?.username}</p>
                 </div>
             </div>
 

@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect, useRef, useContext } from 'react';
-
-import AuthContext from '../AuthContext';
+import { useState, useEffect, useRef } from 'react';
 
 import useProfileStore from '../zustand/profileStore';
+import useUserStore from '../zustand/userStore';
 
 function Navbar({ onSearch }) {
-    const { user, logout } = useContext(AuthContext);
+    const { user, logout } = useUserStore();
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
