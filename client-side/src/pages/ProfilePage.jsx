@@ -5,15 +5,18 @@ import { Link } from 'react-router-dom';
 
 function ProfilePage() {
     const { profilePics, currentIndex, changeProfilePic, nextPfp, prevPfp, toggleChangeProfilePic } = useProfileStore();
-    const { user } = useUserStore();
+    const { user, profilePic, setProfilePic } = useUserStore();
+
+    const handleChangePfp = () => {
+        setProfilePic(profilePic[currentIndex])
+    }
 
     return (
         <div>
-            
             <div className='w-[400px] h-fit lg:w-[500px] mx-auto mt-12 bg-slate-900 rounded-lg text-blue-400 shadow'>
                 <div className='flex py-5 flex-col items-center gap-y-4'>
                     <div className='relative'>
-                        <img src={profilePics[currentIndex]} alt="profile picture"
+                        <img src={ profilePic || profilePics[currentIndex]} alt="profile picture"
                             className='object-cover rounded-full size-[250px] shadow'
                         />
                         {changeProfilePic && <div className='absolute top-26 flex justify-between w-[125%] div-referencia left-1/2 -translate-x-1/2'>
@@ -26,7 +29,11 @@ function ProfilePage() {
                         </div>}
 
                         <i className={`fa-solid fa-${changeProfilePic ? "check bg-slate-100 text-slate-950 outline-4 outline-slate-950" : "feather outline-2 bg-slate-950 text-slate-100 hover:text-slate-950 hover:bg-slate-100"} bottom-3 right-4 absolute p-3 text-lg  rounded-full cursor-pointer  duration-300 ease-in-out `}
-                            onClick={toggleChangeProfilePic}
+                            onClick={() => {
+                                toggleChangeProfilePic();
+                                handleChangePfp(); // Atualiza a foto quando o usuário clica
+                            }}
+
                         />
 
                     </div>
