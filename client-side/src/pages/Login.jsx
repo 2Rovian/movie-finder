@@ -39,7 +39,7 @@ function Login() {
         return;
       } else {
         try {
-          const response = await axios.post("http://localhost:8000/api/create-user", { username, password })
+          const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/create-user`, { username, password })
 
           if (response.status === 201) {
             setValidation('Register Successful!')
@@ -75,7 +75,7 @@ function Login() {
     }
 
     try {
-      const response = await axios.post("http://localhost:8000/api/login", { username, password })
+      const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_BASEURL}/login` , { username, password })
 
       if (response.status === 200) {
         useUserStore.getState().setUser(response.data); // zustand
