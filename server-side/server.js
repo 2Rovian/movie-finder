@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 
 const CorsOptions = {
-    origin: 'https://movie-finder-frontend.onrender.com/',
+    origin: 'http://localhost:5173/',
     methods: ['GET', 'POST', 'PUT'],
     allowedHeaders: ['Content-Type', 'Authorization']
 };
