@@ -16,7 +16,7 @@ function ProfilePage() {
             <div className='w-[400px] h-fit lg:w-[500px] mx-auto mt-12 bg-slate-900 rounded-lg text-blue-400 shadow'>
                 <div className='flex py-5 flex-col items-center gap-y-4'>
                     <div className='relative'>
-                        <img src={ profilePic || profilePics[currentIndex]} alt="profile picture"
+                        <img src={ profilePics[currentIndex]} alt="profile picture"
                             className='object-cover rounded-full size-[250px] shadow'
                         />
                         {changeProfilePic && <div className='absolute top-26 flex justify-between w-[125%] div-referencia left-1/2 -translate-x-1/2'>
