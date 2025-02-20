@@ -30,7 +30,7 @@ function ProfilePage() {
                         />
 
                     </div>
-                    <p className='text-xl font-bold'>{user?.username}</p>
+                    <p className='text-3xl font-bold'>{user?.username}</p>
                 </div>
             </div>
 

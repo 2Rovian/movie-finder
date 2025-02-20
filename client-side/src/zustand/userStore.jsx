@@ -2,8 +2,9 @@ import { create } from 'zustand';
 
 const useUserStore = create((set) => ({
     user: null, //inicialmente sem usuário
-    setUser: (userData) => set({ user: userData }), // Define o usuário
-    logout: () => set({ user: null }), // Faz logout limpando o estado
+    token: null,
+    setUser: (userData) => set({ user: userData.user, token: userData.token }), // Define o usuário
+    logout: () => set({ user: null, token: null }), // Faz logout limpando o estado
 }))
 
 export default useUserStore;
